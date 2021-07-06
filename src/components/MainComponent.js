@@ -10,6 +10,7 @@ import About from './AboutComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import { actions } from 'react-redux-form';
 import { postComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
   return {
@@ -73,14 +74,18 @@ class Main extends Component {
       return (
           <div>
             <Header/>
-              <Switch>
-                <Route path='/home' component={HomePage} />
-                <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
-                <Route path='/directory/:campsiteId' component={CampsiteWithId} />
-                <Route path='/aboutus' component={AboutPage} />
-                <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
-                <Redirect to='/home' />
-              </Switch>
+              <TransitionGroup>
+                <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+                  <Switch>
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
+                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+                    <Route path='/aboutus' component={AboutPage} />
+                    <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
+                    <Redirect to='/home' />
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
             <Footer />
           </div>
       );
