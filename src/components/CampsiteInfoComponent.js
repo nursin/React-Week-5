@@ -4,6 +4,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 
 const required = formValue => formValue && formValue.length;
@@ -90,12 +91,18 @@ class CommentForm extends Component {
 function RenderCampsite({campsite}) {
   return (
     <div className="col-md-5 m-1">
-      <Card>
-          <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
-            <CardBody>
-                <CardText>{campsite.description}</CardText>
-            </CardBody>
-      </Card>
+      <FadeTransform
+        in
+        transformProps={{
+          exitTransform: 'scale(0.5) translate(50%)'
+        }}>
+          <Card>
+              <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
+                <CardBody>
+                    <CardText>{campsite.description}</CardText>
+                </CardBody>
+          </Card>
+      </FadeTransform>
     </div>
   );
 }
@@ -107,12 +114,19 @@ function RenderComments({comments, postComment, campsiteId}) {
       <div className="col-md-5 m-1">
         <h4>Comments</h4>
         {console.log(comments)}
-        {comments.map(comment =>
-        <div className="mb-3" key={comment.id}>
-          <div> {comment.text}</div>
-          <div>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} </div>
-        </div>
-        )}
+        <Stagger in>
+          {comments.map(comment => {
+            return (
+              <Fade in key={comment.id}>
+                <div>
+                  <p>{comment.text}<br />
+                  -- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                  </p>
+                </div>
+              </Fade>
+            );
+          })}
+        </Stagger>
       <CommentForm campsiteId={campsiteId} postComment={postComment} />
       </div>
     );
