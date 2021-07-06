@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
 const required = formValue => formValue && formValue.length;
@@ -83,7 +83,7 @@ class Contact extends Component {
               <Row className="form-group">
                 <Label htmlFor="firstName" md={2}>First Name</Label>
                 <Col md={10}>
-                  <Control.text model=".firstName" id="firstName" name="firstName"
+                  <Control.Text model=".firstName" id="firstName" name="firstName"
                     placeholder="First Name"
                     className="form-control"
                     validators={{
@@ -108,7 +108,7 @@ class Contact extends Component {
               <Row className="form-group">
                 <Label htmlFor="lastName" md={2}>Last Name</Label>
                 <Col md={10}>
-                  <Control.text model=".lastName" id="lastName" name="lastName"
+                  <Control.Text model=".lastName" id="lastName" name="lastName"
                     placeholder="Last Name"
                     className="form-control" 
                     validators={{
@@ -133,7 +133,7 @@ class Contact extends Component {
               <Row className="form-group">
                 <Label htmlFor="phoneNum" md={2}>Phone</Label>
                 <Col md={10}>
-                  <Control.text model=".phoneNum" id="phoneNum" name="phoneNum"
+                  <Control.Text model=".phoneNum" id="phoneNum" name="phoneNum"
                     placeholder="Phone number"
                     className="form-control"
                     validators={{
@@ -160,7 +160,7 @@ class Contact extends Component {
               <Row className="form-group">
                 <Label htmlFor="email" md={2}>Email</Label>
                 <Col md={10}>
-                  <Control.text model=".email" id="email" name="email"
+                  <Control.Text model=".email" id="email" name="email"
                     placeholder="Email"
                     className="form-control"
                     validators={{
@@ -184,7 +184,7 @@ class Contact extends Component {
                 <Col md={{size: 4, offset: 2}}>
                   <div className="form-check">
                     <Label check>
-                      <Control.checkbox 
+                      <Control.Checkbox 
                         model=".agree"
                         name="agree"
                         className="form-check-input"
@@ -194,17 +194,17 @@ class Contact extends Component {
                   </div>
                 </Col>
                 <Col md={4}>
-                  <Control.select model=".contactType" name="contactType"
+                  <Control.Select model=".contactType" name="contactType"
                       className="form-control">
                     <option>By Phone</option>
                     <option>By Email</option>
-                  </Control.select>
+                  </Control.Select>
                 </Col>
               </Row>
               <Row className="form-group">
                 <Label htmlFor="feedback" md={2}>Your Feedback</Label>
                 <Col md={10}>
-                  <Control.textarea model=".feedback" id="feedback" name="feedback"
+                  <Control.Textarea model=".feedback" id="feedback" name="feedback"
                     rows="12"
                     className="form-control" 
                   />

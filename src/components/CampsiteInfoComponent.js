@@ -46,22 +46,22 @@ class CommentForm extends Component {
               <LocalForm onSubmit={values => this.handleSubmit(values)}>
                 <div className="form-group">
                   <Label htmlFor="rating">Rating</Label>
-                  <Control.select id="rating" model=".rating" name="rating" className="form-control" >
+                  <Control.Select id="rating" model=".rating" name="rating" className="form-control" >
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
                     <option>5</option>
-                  </Control.select>
+                  </Control.Select>
                 </div>
                 <div className="form-group">
                   <Label htmlFor="author">Author</Label>
-                  <Control.text id="author" model=".author" name="author" className="form-control"                                         validators={{
+                  <Control.Text id="author" model=".author" name="author" className="form-control"                                         validators={{
                       required, 
                       minLength: minLength(2),
                       maxLength: maxLength(15)
                   }}>
-                  </Control.text>
+                  </Control.Text>
                   <Errors
                     className="text-danger"
                     model=".author"
@@ -75,9 +75,9 @@ class CommentForm extends Component {
                 />
                 </div>
                 <div className="form-group">
-                  <Label htmlFor="feedback">Feedback</Label>
-                    <Control.textarea id="feedback" model=".feedback" name="feedback" rows="6" className="form-control">
-                    </Control.textarea>
+                  <Label htmlFor="text">Feedback</Label>
+                    <Control.Textarea id="text" model=".text" name="text" rows="6" className="form-control">
+                    </Control.Textarea>
                 </div>
                 <Button type="submit" value="submit" color="primary">Submit Comment</Button>
               </LocalForm>

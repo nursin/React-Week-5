@@ -11,6 +11,8 @@ import CampsiteInfo from './CampsiteInfoComponent';
 import { actions } from 'react-redux-form';
 import { postComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { FadeTransform } from 'react-animation-components';
+
 
 const mapStateToProps = state => {
   return {
@@ -82,7 +84,13 @@ class Main extends Component {
                     <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                     <Route path='/aboutus' component={AboutPage} />
                     <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
-                    <Redirect to='/home' />
+                    <FadeTransform
+                      in
+                      transformProps={{
+                        exitTransform: 'scale(0.5) translate(50%)'
+                      }}>
+                      <Redirect to='/home' />
+                    </FadeTransform>
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>
